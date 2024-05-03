@@ -4,6 +4,8 @@
 (menhir
   (modules parser xmlParser timestampParser)
   (flags "--table") ;; slower parser, but compilation *much* faster
+    ; (flags "--table" "--dump" "--explain")
+  ; (flags --explain --inspection --table --dump)
 )
 
 (library

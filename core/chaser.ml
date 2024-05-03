@@ -61,7 +61,6 @@ object(self)
     | bn -> super#bindingnode bn
 end
 
-
 let find_external_refs prog module_table =
   StringSet.elements
     ((find_module_refs module_table [] StringMap.empty)#program prog)#get_import_candidates

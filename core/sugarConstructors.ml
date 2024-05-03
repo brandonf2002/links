@@ -155,9 +155,11 @@ module SugarConstructors (Position : Pos)
 
   (** Bindings *)
   (* Create a function binding. *)
-  let fun_binding ?(ppos=dp) sig_opt ?(unsafe_sig=false) ((linearity, frozen), bndr, args, location, blk) =
+  let fun_binding ?(ppos=dp) sig_opt ?(unsafe_sig=false) ((linearity, frozen), bndr, args, location, blk, b_ppos) =
+    (* "fun_binding: " ^ bndr ^ " Pos: " ^ (SourceCode.Position.show (pos ppos)) |> print_endline; *)
     let fun_signature = datatype_opt_of_sig_opt sig_opt bndr in
-      with_pos ppos (Fun { fun_binder = binder bndr;
+      (* with_pos ppos (Fun { fun_binder = (binder bndr); *)
+      with_pos ppos (Fun { fun_binder = (binder ~ppos:b_ppos bndr);
                            fun_linearity = linearity;
                            fun_definition = ([], NormalFunlit (args, blk));
                            fun_location = location;
